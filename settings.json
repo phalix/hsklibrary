@@ -1,0 +1,9 @@
+{
+    "galaxy.meteor.com": {
+        "env": {
+            "ROOT_URL": "http://hsklibrary.phalix.eu.meteorapp.com/",
+            "DEPLOY_HOSTNAME":"eu-west-1.galaxy.meteor.com",
+            "MONGO_URL": "mongodb://hsklibrary:UcB966gHDK6Nh79b@ds115573.mlab.com:15573/hsklibrary"
+            }
+          }
+}

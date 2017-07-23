@@ -1,0 +1,25 @@
+
+
+
+dl.voccontainer dt.vocheader{
+  border-top: solid 1px #ffffff; /* rgba(212, 212, 255, 0.1);*/
+  font-size:2em;
+}
+
+dl.voccontainer dt.vocheader.quiz{
+  border-top: none;
+
+}
+
+/*start:this is for feedback of push buttons*/
+a.button.special.fit:active {
+  background-color:red;
+}
+
+a.button.special.fit[correct=true]:active {
+  background-color:green;
+}
+a#reset:active{
+  background-color:green;
+}
+/*end:this is for feedback of push buttons*/
