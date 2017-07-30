@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+
+  "name": "HSK Library",
+  "description": "This extension launches the HSK Library.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "res/mipmap-xxhdpi/ic_launcher.png"
+
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "permissions": [
+
+  ],
+  "homepage_url": "http://localhost:3000",
+  "icons": {
+           "72": "res/mipmap-hdpi/ic_launcher.png",
+           "48": "res/mipmap-mdpi/ic_launcher.png",
+          "96": "res/mipmap-xhdpi/ic_launcher.png",
+          "144": "res/mipmap-xxhdpi/ic_launcher.png",
+          "196": "res/mipmap-xxxhdpi/ic_launcher.png"
+          },
+}

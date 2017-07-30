@@ -20,6 +20,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+
 (function($) {
 
 	skel.breakpoints({
@@ -379,25 +380,16 @@
 					<header id="header" class="alt">
 						<!-- {{> loginButtons}} -->
 						<a href="index.html" class="logo"><strong>HSK</strong> Library<span></span></a>
-						<!--<nav>
-							<a href="#menu">Menu</a>
-						</nav>-->
+						<nav>
+							{{>menubutton}}
+						</nav>
 
 
 					</header>
 
 				<!-- Menu -->
 					<nav id="menu">
-						<ul class="links">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="landing.html">Landing</a></li>
-							<li><a href="generic.html">Generic</a></li>
-							<li><a href="elements.html">Elements</a></li>
-						</ul>
-						<ul class="actions vertical">
-							<li><a href="#" class="button special fit">Get Started</a></li>
-							<li><a href="#" class="button fit">Log In</a></li>
-						</ul>
+						{{>links}}
 					</nav>
 
 				<!-- Banner -->
@@ -409,21 +401,34 @@
 							<div class="content">
 								<p>学习复习汉字<br />
 									This Library uses cc-cedict.org and html5up.net. It is done with Meteor.<br/>
-									You can take a quiz or review the Hanzi per Category. <br/>
+									You can take a quiz or review the Hanzi per category. <br/>
+									All of them are divided into categories of 150 Hanzi. <br/>
 									Other HSK Levels will be contiously added.
+								</p>
+							</div>
+							<div class="content" id="subactionsformenuid0">
+								<p>
+								Number of Words you want to test: {{> noOfWords}}
 								</p>
 								{{> Actions}}
 							</div>
 						</div>
 					</section>
 
+
+
 				<!-- Main -->
 					<div id="main">
+
+
 							<section id="search">
 								<!--{{ > search}}-->
+								{{>textTranslation}}
 							</section>
 						<!-- One -->
+
 							<section id="one" class="tiles">
+
 								<article level="HSK1">
 									<span class="image">
 										<img src="images/pic01.jpg" alt="" />
@@ -442,30 +447,66 @@
 										<p>汉语水平考试 二</p>
 									</header>
 								</article>
-								<!--<article level="HSK3">
+								<article level="HSK3">
 									<span class="image">
 										<img src="images/pic03.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="#two" class="link">HSK3</a></h3>
+										<h3><a href="#two" class="link">HSK3</a> - <a href="#three" class="link">QUIZ</a></h3>
 										<p>汉语水平考试 三</p>
 									</header>
 								</article>
+								<!--<article level="HSK3b">
+									<span class="image">
+										<img src="images/pic03.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="#two" class="link">HSK3b</a> - <a href="#three" class="link">QUIZ</a></h3>
+										<p>汉语水平考试 三b</p>
+									</header>
+								</article>-->
 								<article level="HSK4">
 									<span class="image">
 										<img src="images/pic04.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="#two" class="link">HSK4</a></h3>
+										<h3><a href="#two" class="link">HSK4</a> - <a href="#three" class="link">QUIZ</a></h3>
 										<p>汉语水平考试 四</p>
 									</header>
 								</article>
+								<!--<article level="HSK4b">
+									<span class="image">
+										<img src="images/pic04.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="#two" class="link">HSK4b</a> - <a href="#three" class="link">QUIZ</a></h3>
+										<p>汉语水平考试 四b</p>
+									</header>
+								</article>
+								<article level="HSK4c">
+									<span class="image">
+										<img src="images/pic04.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="#two" class="link">HSK4c</a> - <a href="#three" class="link">QUIZ</a></h3>
+										<p>汉语水平考试 四c</p>
+									</header>
+								</article>
+								<article level="HSK4d">
+									<span class="image">
+										<img src="images/pic04.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="#two" class="link">HSK4d</a> - <a href="#three" class="link">QUIZ</a></h3>
+										<p>汉语水平考试 四d</p>
+									</header>
+								</article>-->
 								<article level="HSK5">
 									<span class="image">
 										<img src="images/pic05.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="#two" class="link">HSK5</a></h3>
+										<h3><a href="#two" class="link">HSK5</a> - <a href="#three" class="link">QUIZ</a></h3>
 										<p>汉语水平考试 五</p>
 									</header>
 								</article>
@@ -474,10 +515,10 @@
 										<img src="images/pic06.jpg" alt="" />
 									</span>
 									<header class="major">
-										<h3><a href="#two" class="link">HSK6</a></h3>
+										<h3><a href="#two" class="link">HSK6</a> - <a href="#three" class="link">QUIZ</a></h3>
 										<p>汉语水平考试 六</p>
 									</header>
-								</article>-->
+								</article>
 							</section>
 
 						<!-- Two -->
@@ -570,7 +611,7 @@
 								<li><a href="#" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
 							</ul>
 							<ul class="copyright">
-								<li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+								<li>&copy; Sebastian Bittmann</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
 							</ul>
 						</div>
 					</footer>

@@ -519,20 +519,58 @@ print 'It took ' + i + ' iterations to sort the deck.';
 </template>
 
 <template name="voclist">
-
 	<div class="row 200%">
 		<h4>{{name}}</h4>
-		<dl class="voccontainer">
+		<ul class="pagination vocpagination">
+				<!--<li><span class="button small disabled">Prev</span></li>-->
+				<li style="width:0;display:none"></li>
+				{{#each pages}}
+					{{> page}}
+				{{/each}}
+				<li style="width:0;display:none"></li>
+				<!--<li><a href="#" class="page">2</a></li>
+				<li><a href="#" class="page">3</a></li>
+				<li><span>…</span></li>
+				<li><a href="#" class="page">8</a></li>
+				<li><a href="#" class="page">9</a></li>
+				<li><a href="#" class="page">10</a></li>-->
+				<!--<li><a href="#" class="button small">Next</a></li>-->
+			</ul>
+	</div>
+	<div class="row 200%">
+
+
+
+		<dl class="voccontainer" style="width: 100%;">
+
 			{{#each vocabulary}}
 				{{> voc}}
 			{{/each}}
+
 		</dl>
 
 	</div>
 </template>
 
-<template name="voc">
+<template name="noOfWords">
+	<ul class="pagination wordpagination">
+		<li style="width:0;display:none"></li>
+		{{#each wordStep}}
+			{{> noOfWordSelector}}
+		{{/each}}
+		<li></li>
+	</ul>
+</template>
 
+<template name="noOfWordSelector">
+	<li><a class="page {{#if active}}active{{/if}}" words="{{words}}">{{text}}</a></li>
+</template>
+
+<template name="page">
+	<li><a class="page {{#if active}}active{{/if}}" page="{{page}}">{{text}}</a></li>
+</template>
+
+<template name="voc">
 	<dt class="vocheader">{{simp}} - {{pinyin}}</dt>
 	<dd class="voctranslation">
 		<p>{{translation}}</p>
@@ -543,9 +581,14 @@ print 'It took ' + i + ' iterations to sort the deck.';
 <template name="quiz">
 
 <dl class="voccontainer">
-	<dt class="vocinfo quiz">{{levelis}} {{leftover}} {{lastanswer}}</dt>
+	<!--<dt class="vocsetup quiz">
+		<li>
+			<a class="button special fit">{{whatIsTested}}</a>
+		</li>
+	</dt>-->
+	<dt class="vocinfo quiz">{{levelis}} {{leftover}} {{gradeofcurrentword}} {{lastanswer}}</dt>
 	<dt class="vocheader quiz">{{first}}</dt>
-	<dd class="voctranslation quiz">{{second}}</dd>
+	<!--<dd class="voctranslation quiz">{{second}}</dd>-->
 </dl>
 	<!--昨天 - zuo2 tian1/yesterday-->
 
@@ -583,4 +626,53 @@ print 'It took ' + i + ' iterations to sort the deck.';
 	<ul class="actions">
 		<li><a href="#one" class="button next scrolly">Get Started</a>  <a id="reset" class="button scrolly">Reset</a></li>
 	</ul>
+</template>
+
+
+<template name="textTranslation">
+	<div class="inner">
+		<div class="12u$ translationcontent" contenteditable="true">
+			<div style="width:100%">{{text}}</div>
+			<!--<textarea type="text" value="hia">{{text}}</textarea>-->
+		</div>
+		<div class="12u$">
+			<ul class="actions">
+				<li><input type="button" value="Translate" id="translate" class="special"></li>
+				<li><input type="button" value="Delete" id="delete" ></li>
+			</ul>
+		</div>
+		<div class="12u$">
+			<dt class="vocheader">{{simp}} - {{pinyin}} - {{level}}</dt>
+			<dd class="voctranslation">
+				<p>{{translation}}</p>
+			</dd>
+		</div>
+	</div>
+
+</template>
+
+<template name="options">
+	<div class="6u 12u$(small)">
+		<input type="checkbox" id="demo-copy" name="demo-copy">
+		<label for="demo-copy">Email me a copy</label>
+	</div>
+</template>
+
+
+<template name="menubutton">
+	<a href="#menu" id="menubutton">Menu</a>
+</template>
+
+
+<template name="links">
+	<ul class="links">
+		{{#each links}}
+			{{ > link}}
+		{{/each}}
+
+	</ul>
+</template>
+
+<template name="link">
+	<li><a menu={{id}}>{{name}}</a></li>
 </template>

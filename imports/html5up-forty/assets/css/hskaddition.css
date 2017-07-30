@@ -1,4 +1,73 @@
 
+@media screen and (max-width: 480px)
+ul.pagination li:nth-child(n+2):nth-last-child(n+2){
+  display:inline-block;
+}
+
+body .translationcontent{
+  border-radius:3px;
+  height:10em;
+  margin-bottom:1em;
+  background-color:#242943;
+  border: 1px solid white;
+  font-size: 2em;
+  overflow: scroll;
+}
+/* Menu Lern */
+body.menuid0 section#search{
+  visibility: hidden;
+  display:none;
+}
+
+/* Menu Translate */
+
+body.menuid1 section#one{
+  visibility: hidden;
+  display:none;
+}
+body.menuid1 section#two{
+  visibility: hidden;
+  display:none;
+}
+body.menuid1 section#three{
+  visibility: hidden;
+  display:none;
+}
+
+body.menuid1 #banner > .inner .content#subactionsformenuid0{
+  visibility: hidden;
+  display:none;
+}
+
+span.hskhighlight{
+  margin-right:1px;
+  margin-bottom:1px;
+  border-radius:3px;
+}
+
+span.hskhighlight.HSK1{
+    background-color: #6fc3df;
+}
+
+span.hskhighlight.HSK2{
+    background-color: #8d82c4;
+}
+
+span.hskhighlight.HSK3{
+    background-color: #ec8d81;
+}
+
+span.hskhighlight.HSK4{
+    background-color: #e7b788;
+}
+
+span.hskhighlight.HSK5{
+    background-color: #8ea9e8;
+}
+
+span.hskhighlight.HSK6{
+    background-color: #87c5a4;
+}
 
 
 dl.voccontainer dt.vocheader{
