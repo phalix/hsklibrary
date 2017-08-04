@@ -714,7 +714,7 @@ function getPaginationSize(){
     currentPaginateNoOfVocs = amplify.store()["pagination"];
     if(!currentPaginateNoOfVocs){
       Session.set("pagination",10);
-      amplify.store("pagination",pagination);
+      amplify.store("pagination",10);
       currentPaginateNoOfVocs = 10;
     }
   }
