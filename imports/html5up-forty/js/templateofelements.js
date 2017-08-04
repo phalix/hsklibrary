@@ -139,7 +139,7 @@ function generateQuestion(caller,popselected,accordingToQuestion){
       voc = [];
 
       var knownWords = amplify.store()["hsklibrary"+level];
-
+      if(!knownWords){knownWords={};}
       var counter = 0;
       temp.forEach(function(ele){
         counter += 1;
@@ -195,6 +195,9 @@ function generateQuestion(caller,popselected,accordingToQuestion){
         //go down level by level
         var setOfVocabulary = [];
         var currentStatusTemp = amplify.store()["hsklibrary"+level];
+        if(!currentStatusTemp){
+          currentStatusTemp={};
+        }
         var currentStatus ={};
         var highestlevelPinyin = 0;
         var highestlevelTranslation = 0;
