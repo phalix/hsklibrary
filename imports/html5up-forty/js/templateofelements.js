@@ -263,10 +263,14 @@ function generateQuestion(caller,popselected,accordingToQuestion){
         if(!result){
           console.log("Error");
         }
-        var temporary_result = currentStatus[result.simp];
-        if(temporary_result){
-          result = temporary_result;
+        var temporary_result = undefined;
+        if(result){
+          temporary_result = currentStatus[result.simp];
+          if(temporary_result){
+            result = temporary_result;
+          }
         }
+
         if(result){
           result.second = result.pinyin;
           result.first = result.simp;
