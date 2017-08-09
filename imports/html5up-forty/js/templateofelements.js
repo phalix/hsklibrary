@@ -18,9 +18,6 @@ Template.body.events({
 
       var level = target.getAttribute("level");
       Session.set('level', level);
-
-
-
     }
 });
 Template.Actions.events({
@@ -323,6 +320,7 @@ function generateAnswers(caller,pinyinOrTranslation){
 
     if(correct){
       result = [];
+      resultSimpArray = [];
       var correctposition = Math.round(Math.random()*(options-1));
       for(var i = 0;i<options;i++){
         if(i==correctposition){
@@ -332,7 +330,12 @@ function generateAnswers(caller,pinyinOrTranslation){
           }
 
         }else{
+          var counterForChange = 0;
           result[i] = generateQuestion(caller,false,correct);
+          while(resultSimpArray.indexOf(result[i].simp)>-1&&counterForChange<5){
+            result[i] = generateQuestion(caller,false,correct);
+            counterForChange++;
+          }
           if(result[i]){
               result[i].correct = false;
           }
@@ -341,7 +344,7 @@ function generateAnswers(caller,pinyinOrTranslation){
         if(result[i]==undefined){
 
         }else{
-
+          resultSimpArray.push(result[i].simp);
           if(caller.pinyinOrTranslation.get()==translation_static){
               result[i].text = result[i].translation;
           }else{
