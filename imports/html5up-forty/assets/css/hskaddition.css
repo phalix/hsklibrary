@@ -45,6 +45,18 @@ span.hskhighlight{
   border-radius:3px;
 }
 
+span.hskhighlight.grade{
+    background-color: #6fc3df;
+    float: right;
+    padding: 0 0.06em 0 0.06em;
+}
+
+span.hskhighlight.gradepinyin{
+    background-color: #e7b788;
+    float: right;
+    padding: 0 0.06em 0 0.06em;
+}
+
 span.hskhighlight.HSK1{
     background-color: #6fc3df;
 }
