@@ -255,7 +255,7 @@ import './jquery.scrolly.min.js';
 			});
 
 		// Menu.
-			var $menu = $('#menu'),
+			/*var $menu = $('#menu'),
 				$menuInner;
 
 			$menu.wrapInner('<div class="inner"></div>');
@@ -354,6 +354,7 @@ import './jquery.scrolly.min.js';
 							$menu._hide();
 
 				});
+				*/
 
 	});
 
