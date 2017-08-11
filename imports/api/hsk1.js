@@ -787,7 +787,7 @@ if (Meteor.isServer) {
       {"level":"HSK4","trad":"互相","simp":"互相","pinyin":"hu4 xiang1","translation":"each other/mutually/mutual"},
       {"level":"HSK4","trad":"懷疑","simp":"怀疑","pinyin":"huai2 yi2","translation":"to doubt (sth)/to be skeptical of/to have one's doubts/to harbor suspicions/to suspect that"},
       {"level":"HSK4","trad":"回憶","simp":"回忆","pinyin":"hui2 yi4","translation":"to recall/memories/CL:個|个[ge4]"},
-      {"level":"HSK4","trad":"火","simp":"火","pinyin":"Huo3","translation":"surname Huo"},
+      {"level":"HSK4","trad":"火","simp":"火","pinyin":"huo3","translation":"fire/urgent/ammunition/fiery or flaming/internal heat (Chinese medicine)/hot (popular)/classifier for military units (old)"},
       {"level":"HSK4","trad":"獲得","simp":"获得","pinyin":"huo4 de2","translation":"to obtain/to receive/to get"},
       {"level":"HSK4","trad":"活動","simp":"活动","pinyin":"huo2 dong4","translation":"to exercise/to move about/to operate/to use connections (personal influence)/loose/shaky/active/movable/activity/campaign/maneuver/behavior/CL:項|项[xiang4],個|个[ge4]"},
       {"level":"HSK4","trad":"活潑","simp":"活泼","pinyin":"huo2 po5","translation":"lively/vivacious/brisk/active"},
@@ -858,7 +858,7 @@ if (Meteor.isServer) {
       {"level":"HSK4","trad":"恐怕","simp":"恐怕","pinyin":"kong3 pa4","translation":"fear/to dread/I'm afraid that.../perhaps/maybe"},
       {"level":"HSK4","trad":"空氣","simp":"空气","pinyin":"kong1 qi4","translation":"air/atmosphere"},
       {"level":"HSK4","trad":"苦","simp":"苦","pinyin":"ku3","translation":"bitter/hardship/pain/to suffer/to bring suffering to/painstakingly"},
-      {"level":"HSK4","trad":"寬","simp":"宽","pinyin":"Kuan1","translation":"surname Kuan"},
+      {"level":"HSK4","trad":"寬","simp":"宽","pinyin":"kuan1","translation":"lenient/wide/broad"},
       {"level":"HSK4","trad":"困","simp":"困","pinyin":"kun4","translation":"to trap/to surround/hard-pressed/stranded/destitute"},
       {"level":"HSK4","trad":"困難","simp":"困难","pinyin":"kun4 nan5","translation":"difficult/challenging/straitened circumstances/difficult situation"},
       {"level":"HSK4","trad":"擴大","simp":"扩大","pinyin":"kuo4 da4","translation":"to expand/to enlarge/to broaden one's scope"},
@@ -880,7 +880,7 @@ if (Meteor.isServer) {
       {"level":"HSK4","trad":"例如","simp":"例如","pinyin":"li4 ru2","translation":"for example/for instance/such as"},
       {"level":"HSK4","trad":"理想","simp":"理想","pinyin":"li3 xiang3","translation":"an ideal/a dream/ideal/perfect"},
       {"level":"HSK4","trad":"倆","simp":"俩","pinyin":"lia3","translation":"two (colloquial equivalent of 兩個|两个)/both/some"},
-      {"level":"HSK4","trad":"連","simp":"连","pinyin":"Lian2","translation":"surname Lian"},
+      {"level":"HSK4","trad":"連","simp":"连","pinyin":"lian2","translation":"to link/to join/to connect/continuously/in succession/including/(used with 也, 都 etc) even/company (military)"},
       {"level":"HSK4","trad":"聯係","simp":"联系","pinyin":"lian2 xi4","translation":"variant of 聯繫|联系[lian2 xi4]"},
       {"level":"HSK4","trad":"亮","simp":"亮","pinyin":"liang4","translation":"bright/clear/resonant/to shine/to show/to reveal"},
       {"level":"HSK4","trad":"涼快","simp":"凉快","pinyin":"liang2 kuai5","translation":"nice and cold/pleasantly cool"},
@@ -1005,7 +1005,7 @@ if (Meteor.isServer) {
       {"level":"HSK4","trad":"數量","simp":"数量","pinyin":"shu4 liang4","translation":"amount/quantity/CL:個|个[ge4]/quantitative"},
       {"level":"HSK4","trad":"熟悉","simp":"熟悉","pinyin":"shu2 xi1","translation":"to be familiar with/to know well"},
       {"level":"HSK4","trad":"數字","simp":"数字","pinyin":"shu4 zi4","translation":"numeral/digit/number/figure/amount/digital (electronics etc)/CL:個|个[ge4]"},
-      {"level":"HSK4","trad":"帥","simp":"帅","pinyin":"Shuai4","translation":"surname Shuai"},
+      {"level":"HSK4","trad":"帥","simp":"帅","pinyin":"shuai4","translation":"handsome/graceful/smart/commander in chief/(coll.) cool!/sweet!"},
       {"level":"HSK4","trad":"順便","simp":"顺便","pinyin":"shun4 bian4","translation":"conveniently/in passing/without much extra effort"},
       {"level":"HSK4","trad":"順利","simp":"顺利","pinyin":"shun4 li4","translation":"smoothly/without a hitch"},
       {"level":"HSK4","trad":"順序","simp":"顺序","pinyin":"shun4 xu4","translation":"sequence/order"},
@@ -1023,11 +1023,11 @@ if (Meteor.isServer) {
       {"level":"HSK4","trad":"檯","simp":"台","pinyin":"tai2","translation":"desk/table/counter"},
       {"level":"HSK4","trad":"抬","simp":"抬","pinyin":"tai2","translation":"to lift/to raise/(of two or more persons) to carry"},
       {"level":"HSK4","trad":"態度","simp":"态度","pinyin":"tai4 du5","translation":"manner/bearing/attitude/approach/CL:個|个[ge4]"},
-      {"level":"HSK4","trad":"談","simp":"谈","pinyin":"Tan2","translation":"surname Tan"},
+      {"level":"HSK4","trad":"談","simp":"谈","pinyin":"tan2","translation":"to speak/to talk/to converse/to chat/to discuss"},
       {"level":"HSK4","trad":"彈鋼琴","simp":"弹钢琴","pinyin":"tan2 gang1 qin2","translation":"to play the piano"},
       {"level":"HSK4","trad":"䠀","simp":"趟","pinyin":"tang1","translation":"old variant of 趟[tang1]"},
       {"level":"HSK4","trad":"躺","simp":"躺","pinyin":"tang3","translation":"to recline/to lie down"},
-      {"level":"HSK4","trad":"湯","simp":"汤","pinyin":"Tang1","translation":"surname Tang"},
+      {"level":"HSK4","trad":"湯","simp":"汤","pinyin":"shang1","translation":"rushing current"},
       {"level":"HSK4","trad":"討論","simp":"讨论","pinyin":"tao3 lun4","translation":"to discuss/to talk over/CL:個|个[ge4]"},
       {"level":"HSK4","trad":"討厭","simp":"讨厌","pinyin":"tao3 yan4","translation":"to dislike/to loathe/disagreeable/troublesome/annoying"},
       {"level":"HSK4","trad":"特點","simp":"特点","pinyin":"te4 dian3","translation":"characteristic (feature)/trait/feature/CL:個|个[ge4]"},
@@ -1063,7 +1063,7 @@ if (Meteor.isServer) {
       {"level":"HSK4","trad":"西紅柿","simp":"西红柿","pinyin":"xi1 hong2 shi4","translation":"tomato/CL:隻|只[zhi1]"},
       {"level":"HSK4","trad":"洗衣機","simp":"洗衣机","pinyin":"xi3 yi1 ji1","translation":"washer/washing machine/CL:臺|台[tai2]"},
       {"level":"HSK4","trad":"吸引","simp":"吸引","pinyin":"xi1 yin3","translation":"to attract (interest, investment etc)/CL:個|个[ge4]"},
-      {"level":"HSK4","trad":"咸","simp":"咸","pinyin":"Xian2","translation":"surname Xian"},
+      {"level":"HSK4","trad":"咸","simp":"咸","pinyin":"xian2","translation":"all/everyone/each/widespread/harmonious"},
       {"level":"HSK4","trad":"現代","simp":"现代","pinyin":"Xian4 dai4","translation":"Hyundai, South Korean company"},
       {"level":"HSK4","trad":"羨慕","simp":"羡慕","pinyin":"xian4 mu4","translation":"to envy/to admire"},
       {"level":"HSK4","trad":"限制","simp":"限制","pinyin":"xian4 zhi4","translation":"to restrict/to limit/to confine/restriction/limit/CL:個|个[ge4]"},
@@ -1086,7 +1086,7 @@ if (Meteor.isServer) {
       {"level":"HSK4","trad":"興奮","simp":"兴奋","pinyin":"xing1 fen4","translation":"excited/excitement"},
       {"level":"HSK4","trad":"幸福","simp":"幸福","pinyin":"xing4 fu2","translation":"happiness/happy/blessed"},
       {"level":"HSK4","trad":"性格","simp":"性格","pinyin":"xing4 ge2","translation":"nature/disposition/temperament/character/CL:個|个[ge4]"},
-      {"level":"HSK4","trad":"修","simp":"修","pinyin":"Xiu1","translation":"surname Xiu"},
+      {"level":"HSK4","trad":"修","simp":"修","pinyin":"xiu1","translation":"to decorate/to embellish/to repair/to build/to write/to cultivate/to study/to take (a class)"},
       {"level":"HSK4","trad":"許多","simp":"许多","pinyin":"xu3 duo1","translation":"many/a lot of/much"},
       {"level":"HSK4","trad":"血","simp":"血","pinyin":"xue4","translation":"blood/colloquial pr. [xie3]/CL:滴[di1],片[pian4]"},
       {"level":"HSK4","trad":"呀","simp":"呀","pinyin":"ya5","translation":"(particle equivalent to 啊 after a vowel, expressing surprise or doubt)"},
@@ -5012,6 +5012,8 @@ if (Meteor.isServer) {
 
     for(var hsk1v in hsk1voc){
       HSK1.insert(hsk1voc[hsk1v]);
+
+
     }
   },0)
 }
