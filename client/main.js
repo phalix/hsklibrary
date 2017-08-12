@@ -1,6 +1,5 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { HSK1 } from '../imports/api/hsk1.js';
 
 
 import '../imports/html5up-forty/assets/css/main.css';

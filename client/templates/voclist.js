@@ -26,19 +26,32 @@ Template.voclist.events({
 Template.voclist.helpers({
   name(){
     var level = Session.get('level');
+    if(level){
+      if(getPaginationSize() * Math.max(Template.instance().currentPage.get(),1) > HSK1.find({"level":level}).count())
+      {
+          return level+" is loading...";
+      }
+    }
+
+
     return level;
   },
   vocabulary(){
     var level = Session.get('level');
+    var current = amplify.store()["hsklibrary"+level];
+    if(!current){current = {}};
+
     var query = {};
     query["level"] = level;
     var options = {};
+    options.sort = {};
+    options.sort.pinyinlowercase = 1;
     options.limit = getPaginationSize();
     options.skip = getPaginationSize() * Template.instance().currentPage.get();
     var result = HSK1.find(query,options).fetch();
-    var current = amplify.store()["hsklibrary"+level];
     for(var i=0;i<result.length;i++){
-      var checkVoc = current[result[i].simp];
+      var checkVoc;
+      checkVoc = current[result[i].simp];
       if(!checkVoc){
         result[i].grade = initialLevelOfCorrectlyAnsweredVariable;
         result[i].gradepinyin = initialLevelOfCorrectlyAnsweredVariable;
@@ -47,7 +60,7 @@ Template.voclist.helpers({
         result[i].gradepinyin = checkVoc.gradepinyin;
       }
     }
-    Template.instance().collectionQuery.set(result);
+    //Template.instance().collectionQuery.set(result);
     return result;
   },
   pages(){
@@ -55,10 +68,8 @@ Template.voclist.helpers({
     var query = {};
     query["level"] = level;
     var query = HSK1.find(query);
-    //var query = Template.instance().collectionQuery.get();
     if(query){
-      var pages = Math.ceil(query.fetch().length/getPaginationSize());
-      pages = Math.min(pages,150);
+      var pages = Math.ceil(query.count()/getPaginationSize());
       var result = [];
       for(var i = 0;i<pages;i++){
         var pobject = {};
@@ -72,6 +83,7 @@ Template.voclist.helpers({
         result.push(pobject);
       }
       if(result.length == 1){
+        //return nothing because with only one result, it makes no sense to let the user choose.
         result = [];
       }
       return result;

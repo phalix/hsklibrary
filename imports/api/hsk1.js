@@ -5007,13 +5007,43 @@ if (Meteor.isServer) {
 
   ]
 
-
-    HSK1.remove({});
+    //First, remove all words currently not in hsk1voc but in DB
+    var hanziWithLevel = HSK1.find({"level":{$exists:true}}).fetch();
+    for(var i = 0;i<hanziWithLevel.length;i++){
+      var removeFromMongoDB = true;
+      for(var hsk1v in hsk1voc){
+        if(hsk1voc[hsk1v].trad==hanziWithLevel[i].trad&&
+          hsk1voc[hsk1v].simp==hanziWithLevel[i].simp&&
+          hsk1voc[hsk1v].pinyin==hanziWithLevel[i].pinyin&&
+          hsk1voc[hsk1v].translation==hanziWithLevel[i].translation&&
+          hsk1voc[hsk1v].pinyin.toLowerCase() == hanziWithLevel[i].pinyinlowercase&&
+          hsk1v == hanziWithLevel[i]._id
+        ){
+          //the exact same hanzi was found by means of trad, simp, pinyin and translation in hsk1voc, so it can stay.
+          removeFromMongoDB = false;
+        }
+      }
+      if(removeFromMongoDB){
+          HSK1.remove({"_id":hanziWithLevel[i]._id});
+      }
+    }
 
     for(var hsk1v in hsk1voc){
-      HSK1.insert(hsk1voc[hsk1v]);
-
+      var available = HSK1.find(hsk1voc[hsk1v]).count();
+      if(available==0){
+        //not found so update the database;
+        hsk1voc[hsk1v].pinyinlowercase = hsk1voc[hsk1v].pinyin.toLowerCase()
+        hsk1voc[hsk1v]._id = hsk1v;
+        HSK1.insert(hsk1voc[hsk1v]);
+      }
 
     }
+
+    /*HSK1.remove({"level":{$exists:true}});
+    for(var hsk1v in hsk1voc){
+      hsk1voc[hsk1v].order = hsk1v;
+      hsk1voc[hsk1v]._id = hsk1v;
+      HSK1.insert(hsk1voc[hsk1v]);
+    }*/
   },0)
 }

@@ -12,6 +12,7 @@ function generateQuestion(caller,popselected,accordingToQuestion){
   var level = Session.get('level');
   var page = Session.get('page');
   var pagination = Session.get('pagination');
+
   if(!page){
     page = 0;
   }
@@ -26,6 +27,8 @@ function generateQuestion(caller,popselected,accordingToQuestion){
       query["level"] = level;
 
       var options = {};
+      options.sort = {};
+      options.sort.pinyinlowercase = 1;
       options.limit = getPaginationSize();
       options.skip = getPaginationSize() * page;
 
@@ -38,28 +41,21 @@ function generateQuestion(caller,popselected,accordingToQuestion){
       temp.forEach(function(ele){
         counter += 1;
         var doaddtheword = false;
-
-        if(!knownWords){
-          //nothing has been yet saved, so quiz it
+        //the particular word has never been quizzed, so quiz it
+        var temp_cur = knownWords[ele.simp];
+        if(!temp_cur){
           doaddtheword = true;
           ele.grade = initialLevelOfCorrectlyAnsweredVariable;
           ele.gradepinyin = initialLevelOfCorrectlyAnsweredVariable;
         }else{
-          //the particular word has never been quizzed, so quiz it
-          var temp_cur = knownWords[ele.simp];
-          if(!temp_cur){
+          if(temp_cur.grade>0||temp_cur.gradepinyin>0){
+            //the grade of the word is not 0, so quiz it.
             doaddtheword = true;
-            ele.grade = initialLevelOfCorrectlyAnsweredVariable;
-            ele.gradepinyin = initialLevelOfCorrectlyAnsweredVariable;
-          }else{
-            if(temp_cur.grade>0||temp_cur.gradepinyin>0){
-              //the grade of the word is not 0, so quiz it.
-              doaddtheword = true;
-              ele.grade = temp_cur.grade;
-              ele.gradepinyin = temp_cur.gradepinyin;
-            }
+            ele.grade = temp_cur.grade;
+            ele.gradepinyin = temp_cur.gradepinyin;
           }
         }
+
         if(doaddtheword){
           voc.push(ele);
         }
@@ -122,7 +118,7 @@ function generateQuestion(caller,popselected,accordingToQuestion){
                 currentStatus[element].gradepinyin==highestlevelPinyin
               ){
                 for(var j=0;j<voc.length;j++){
-                  if(currentStatus[element].simp == voc[j].simp){
+                  if(currentStatus[element] && currentStatus[element].simp == voc[j].simp){
                       setOfVocabulary.push(voc[j]);
                   }
                 }
@@ -135,13 +131,16 @@ function generateQuestion(caller,popselected,accordingToQuestion){
           query["level"] = level;
 
           var options = {};
+          options.sort = {};
+          options.sort.pinyinlowercase = 1;
           options.limit = getPaginationSize();
           options.skip = getPaginationSize() * page;
+
 
           var temp = HSK1.find(query,options);
           voc = temp.fetch();
           for(var i = 0;i<voc.length;i++){
-            if(accordingToQuestion.simp==voc[i].simp){
+            if(accordingToQuestion && accordingToQuestion.simp==voc[i].simp){
 
             }else{
                 setOfVocabulary.push(voc[i]);
@@ -343,8 +342,6 @@ Template.quiz.events({
   'click ul li a.button.special.fit':function(e,a,b){
       var instance = Template.instance()
       setTimeout(function(){answered(e,instance)},200);
-
-
   }
 });
 Template.quiz.helpers({
@@ -376,12 +373,12 @@ Template.quiz.helpers({
   leftover(){
     var instance = Template.instance();
     var result = Session.get("level");
+    var level = Session.get("level");
     generateQuestion(instance,true);
-    instance.voc.get();
-    if(instance.voc.get().length == 0){
-      return "";
+    if(HSK1.find({"level":level}).count()>0&&instance.voc.get().length == 0){
+      return "No Words left.";
     }
-    return "Words Left: " +instance.voc.get().length+",";
+    return "Words left: " +instance.voc.get().length+",";
   },
   levelis(){
     var result = Template.instance().level.get();
