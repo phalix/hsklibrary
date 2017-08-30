@@ -992,7 +992,7 @@ if (Meteor.isServer) {
       {"level":"HSK4","trad":"適應","simp":"适应","pinyin":"shi4 ying4","translation":"to adapt/to fit/to suit"},
       {"level":"HSK4","trad":"使用","simp":"使用","pinyin":"shi3 yong4","translation":"to use/to employ/to apply/to make use of"},
       {"level":"HSK4","trad":"實在","simp":"实在","pinyin":"shi2 zai4","translation":"really/actually/indeed/true/real/honest/dependable/(philosophy) reality"},
-      {"level":"HSK4","trad":"獅子","simp":"狮子","pinyin":"Shi1 zi3","translation":"Leo (star sign)/Shihtzu township in Pingtung County 屏東縣|屏东县[Ping2 dong1 Xian4], Taiwan"},
+      {"level":"HSK4","trad":"獅子","simp":"狮子","pinyin":"shi1 zi5","translation":"lion/CL:隻|只[zhi1],頭|头[tou2]"},
       {"level":"HSK4","trad":"收","simp":"收","pinyin":"shou1","translation":"to receive/to accept/to collect/to put away/to restrain/to stop/in care of (used on address line after name)"},
       {"level":"HSK4","trad":"受不了","simp":"受不了","pinyin":"shou4 bu4 liao3","translation":"unbearable/unable to endure/can't stand"},
       {"level":"HSK4","trad":"受到","simp":"受到","pinyin":"shou4 dao4","translation":"to receive/to suffer/obtained/given"},
