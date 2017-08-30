@@ -6,7 +6,7 @@ import { getPaginationSize } from '../main.js';
 import '../../imports/html5up-forty/elements.html';
 
 function generateQuestion(caller,popselected,accordingToQuestion){
-
+  return;
   var voc = caller.voc.get();
   var noOfWords = caller.noOfVoc.get();
   var level = Session.get('level');
