@@ -6,73 +6,80 @@ import { getPaginationSize } from '../main.js';
 import '../../imports/html5up-forty/elements.html';
 
 function generateQuestion(caller,popselected,accordingToQuestion){
-  return;
   var voc = caller.voc.get();
   var noOfWords = caller.noOfVoc.get();
   var level = Session.get('level');
   var page = Session.get('page');
-  var pagination = Session.get('pagination');
+  var pagination = getPaginationSize();
 
+  if(!level){
+    return;
+  }
   if(!page){
     page = 0;
   }
+  if(!pagination){
+    pagination = 10;
+  }
+
+
+
   if(noOfWords == 0
     || level != caller.level.get()
     || page != caller.page.get()
     || pagination != caller.pagination.get()
   ){
-    if(level){
 
-      var query = {};
-      query["level"] = level;
+    /* This retrieves the words from the database */
+    var query = {};
+    query["level"] = level;
 
-      var options = {};
-      options.sort = {};
-      options.sort.pinyinlowercase = 1;
-      options.limit = getPaginationSize();
-      options.skip = getPaginationSize() * page;
+    var options = {};
+    options.sort = {};
+    options.sort.pinyinlowercase = 1;
+    options.limit = getPaginationSize();
+    options.skip = getPaginationSize() * page;
 
-      var temp = HSK1.find(query,options);
-      voc = [];
+    var temp = HSK1.find(query,options);
+    voc = [];
 
-      var knownWords = amplify.store()["hsklibrary"+level];
-      if(!knownWords){knownWords={};}
-      var counter = 0;
-      temp.forEach(function(ele){
-        counter += 1;
-        var doaddtheword = false;
-        //the particular word has never been quizzed, so quiz it
-        var temp_cur = knownWords[ele.simp];
-        if(!temp_cur){
+    var knownWords = amplify.store()["hsklibrary"+level];
+    if(!knownWords){knownWords={};}
+    var counter = 0;
+    temp.forEach(function(ele){
+      counter += 1;
+      var doaddtheword = false;
+      //the particular word has never been quizzed, so quiz it
+      var temp_cur = knownWords[ele.simp];
+      if(!temp_cur){
+        doaddtheword = true;
+        ele.grade = initialLevelOfCorrectlyAnsweredVariable;
+        ele.gradepinyin = initialLevelOfCorrectlyAnsweredVariable;
+      }else{
+        if(temp_cur.grade>0||temp_cur.gradepinyin>0){
+          //the grade of the word is not 0, so quiz it.
           doaddtheword = true;
-          ele.grade = initialLevelOfCorrectlyAnsweredVariable;
-          ele.gradepinyin = initialLevelOfCorrectlyAnsweredVariable;
-        }else{
-          if(temp_cur.grade>0||temp_cur.gradepinyin>0){
-            //the grade of the word is not 0, so quiz it.
-            doaddtheword = true;
-            ele.grade = temp_cur.grade;
-            ele.gradepinyin = temp_cur.gradepinyin;
-          }
+          ele.grade = temp_cur.grade;
+          ele.gradepinyin = temp_cur.gradepinyin;
         }
+      }
 
-        if(doaddtheword){
-          voc.push(ele);
-        }
+      if(doaddtheword){
+        voc.push(ele);
+      }
 
-      });
+    });
 
-      caller.noOfVoc.set(counter);
+    caller.noOfVoc.set(counter);
 
-      //voc = temp.fetch();
-      Session.set("currentVoc",undefined);
-      caller.answers.set([]);
-      caller.voc.set(voc);
-      caller.level.set(level);
-      caller.page.set(page);
-      caller.pagination.set(pagination);
+    Session.set("currentVoc",undefined);
+    caller.answers.set([]);
+    caller.voc.set(voc);
+    caller.level.set(level);
+    caller.page.set(page);
+    caller.pagination.set(pagination);
+    /*Now we have the words to deal with*/
 
-    }
   };
 
   var result = Session.get("currentVoc");
@@ -80,123 +87,108 @@ function generateQuestion(caller,popselected,accordingToQuestion){
     if(popselected&&result){
       //we already have a variable, no need to reset it
     }else{
-        //first select a vocabel that is not in amplify but in voc
-        //second from a list of vocabel with the highest level in pinyin or translation
-        //go down level by level
-        var setOfVocabulary = [];
-        var currentStatusTemp = amplify.store()["hsklibrary"+level];
-        if(!currentStatusTemp){
-          currentStatusTemp={};
-        }
-        var currentStatus ={};
-        var highestlevelPinyin = 0;
-        var highestlevelTranslation = 0;
-        if(!accordingToQuestion){
-          for(var j=0;j<voc.length;j++){
-            if(currentStatusTemp[voc[j].simp]){
-              currentStatus[voc[j].simp] = currentStatusTemp[voc[j].simp];
-            }else{
-              setOfVocabulary.push(voc[j])
-            }
-          }
-          if(setOfVocabulary.length>0){
-
+      //take a possible question, from the not yet answered vocabulary.
+      //first select a vocabel that is not in amplify but in voc
+      //second from a list of vocabel with the highest level in pinyin or translation
+      //go down level by level
+      var setOfVocabulary = [];
+      var currentStatusTemp = amplify.store()["hsklibrary"+level];
+      if(!currentStatusTemp){
+        currentStatusTemp={};
+      }
+      var currentStatus = {};
+      var highestlevelPinyin = 0;
+      var highestlevelTranslation = 0;
+      if(!accordingToQuestion){
+        for(var j=0;j<voc.length;j++){
+          if(currentStatusTemp[voc[j].simp]){
+            currentStatus[voc[j].simp] = currentStatusTemp[voc[j].simp];
           }else{
+            setOfVocabulary.push(voc[j])
+          }
+        }
+        if(setOfVocabulary.length>0){
 
-            for(var  element in currentStatus){
-              highestlevelTranslation = Math.max(currentStatus[element].grade,highestlevelTranslation);
-              highestlevelPinyin = Math.max(currentStatus[element].gradepinyin,highestlevelPinyin);
-            }
-            if(highestlevelTranslation>highestlevelPinyin){
-              highestlevelPinyin = numberOfLevels+1;
-            }else if(highestlevelTranslation<highestlevelPinyin){
-              highestlevelTranslation = numberOfLevels+1;
-            }
+        }else{
+          for(var element in currentStatus){
+            highestlevelTranslation = Math.max(currentStatus[element].grade,highestlevelTranslation);
+            highestlevelPinyin = Math.max(currentStatus[element].gradepinyin,highestlevelPinyin);
+          }
 
-            for(var element in currentStatus){
-              if(currentStatus[element].grade==highestlevelTranslation||
-                currentStatus[element].gradepinyin==highestlevelPinyin
-              ){
-                for(var j=0;j<voc.length;j++){
-                  if(currentStatus[element] && currentStatus[element].simp == voc[j].simp){
-                      setOfVocabulary.push(voc[j]);
-                  }
+          if(highestlevelTranslation>highestlevelPinyin){
+            highestlevelPinyin = numberOfLevels+1;
+          }else if(highestlevelTranslation<highestlevelPinyin){
+            highestlevelTranslation = numberOfLevels+1;
+          }
+
+          for(var element in currentStatus){
+            if(currentStatus[element].grade==highestlevelTranslation||
+              currentStatus[element].gradepinyin==highestlevelPinyin
+            ){
+              for(var j=0;j<voc.length;j++){
+                if(currentStatus[element] && currentStatus[element].simp == voc[j].simp){
+                  setOfVocabulary.push(voc[j]);
                 }
               }
             }
-
           }
-        }else{
-          var query = {};
-          query["level"] = level;
+        }
+      }else{
+        //fetch an answer from the database;
+        var query = {};
+        query["level"] = level;
+        query["simp"] = {$ne: accordingToQuestion.simp};
+        var options = {};
+        options.sort = {};
+        options.sort.pinyinlowercase = 1;
+        options.limit = pagination;
+        options.skip = pagination * page;
+        setOfVocabulary = HSK1.find(query,options).fetch();
+      }
 
-          var options = {};
-          options.sort = {};
-          options.sort.pinyinlowercase = 1;
-          options.limit = getPaginationSize();
-          options.skip = getPaginationSize() * page;
+      voc = setOfVocabulary;
 
+      var selector = (Math.round((Math.random()*(voc.length-1))));
+      result = voc[selector];
+      if(!result){
+        console.log("Error");
+      }
+      var temporary_result = undefined;
+      if(result){
+        temporary_result = currentStatus[result.simp];
+        if(temporary_result){
+          result = temporary_result;
+        }
+      }
 
-          var temp = HSK1.find(query,options);
-          voc = temp.fetch();
-          for(var i = 0;i<voc.length;i++){
-            if(accordingToQuestion && accordingToQuestion.simp==voc[i].simp){
-
-            }else{
-                setOfVocabulary.push(voc[i]);
+      if(result){
+        result.second = result.pinyin;
+        result.first = result.simp;
+        if(popselected){
+          var temp = caller.voc.get();
+          if(temp){
+            caller.voc.set(temp);
+            /*check if either pinyin or translation should be tested*/
+            var what = undefined;
+            what = pinyin_static;
+            if(result.gradepinyin == 0){
+              what = translation_static;
+            }else if(result.gradepinyin < result.grade){
+              what = translation_static;
+            }else if(result.gradepinyin == result.grade){
+              var randomized = Math.round(Math.random());
+              if(randomized==1){
+                what = translation_static;
+              }
             }
-
+            caller.pinyinOrTranslation.set(what);
+            Session.set("currentVoc",result);
+            caller.answers.set([]);
+            generateAnswers(caller);
           }
         }
-
-        voc = setOfVocabulary;
-
-        var selector = (Math.round((Math.random()*(voc.length-1))));
-        result = voc[selector];
-        if(!result){
-          console.log("Error");
-        }
-        var temporary_result = undefined;
-        if(result){
-          temporary_result = currentStatus[result.simp];
-          if(temporary_result){
-            result = temporary_result;
-          }
-        }
-
-        if(result){
-          result.second = result.pinyin;
-          result.first = result.simp;
-          if(popselected){
-            var temp = caller.voc.get();
-            if(temp){
-                //temp.splice(selector,1);
-                caller.voc.set(temp);
-                /*check if either pinyin or translation should be tested*/
-                var what = undefined;
-                what = pinyin_static;
-                if(result.gradepinyin == 0){
-                  what = translation_static;
-                }else if(result.gradepinyin < result.grade){
-                  what = translation_static;
-                }else if(result.gradepinyin == result.grade){
-                  var randomized = Math.round(Math.random());
-                  if(randomized==1){
-                    what = translation_static;
-                  }
-                }
-
-
-                caller.pinyinOrTranslation.set(what);
-
-                Session.set("currentVoc",result);
-                caller.answers.set([]);
-                generateAnswers(caller);
-            }
-          }
       }
     }
-
   }
 
   return result;
